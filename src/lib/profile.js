@@ -1,9 +1,9 @@
 export const profile = () => {
-    const containerProfile = document.createElement('section');
-    const informationProfile = document.createElement('header');
-    const mainProfile = document.createElement('main');
+  const containerProfile = document.createElement('section');
+  const informationProfile = document.createElement('header');
+  const mainProfile = document.createElement('main');
 
-    const contentInformationProfile = ` 
+  const contentInformationProfile = ` 
     
     <div class="information-profile">
         
@@ -27,7 +27,7 @@ export const profile = () => {
     </div>
     `;
 
-    const contentMainProfile = `
+  const contentMainProfile = `
     
     <header class="edition-information">
       <button type="button" class="edit-info" id="btn-editProfile"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -93,13 +93,10 @@ export const profile = () => {
 
     `;
 
+  informationProfile.innerHTML = contentInformationProfile;
+  mainProfile.innerHTML = contentMainProfile;
+  containerProfile.appendChild(informationProfile);
+  containerProfile.appendChild(mainProfile);
 
-    informationProfile.innerHTML = contentInformationProfile;
-    mainProfile.innerHTML= contentMainProfile;
-    containerProfile.appendChild(informationProfile);
-    containerProfile.appendChild(mainProfile);
-
-    return containerProfile;
-
-    
+  return containerProfile;
 };
