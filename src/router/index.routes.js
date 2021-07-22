@@ -14,6 +14,8 @@ export const router = (route) => {
     case '#/':
     case '#/login':
       return content.appendChild(login());
+    case '#/register':
+      return console.log('registrar');
     case '#/notifications':
       return content.appendChild(notifications());
     case '#/home':
