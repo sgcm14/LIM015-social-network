@@ -1,8 +1,8 @@
-export const notifications = () => {
+export const footer = () => {
   const container = document.createElement('div');
   const template = `
-    <p>Notificaciones</p>
-  `;
+        <p>| codegirls 2021°|</p>
+      `;
   container.innerHTML = template;
   return container;
 };
