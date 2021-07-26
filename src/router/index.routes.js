@@ -42,7 +42,7 @@ export const router = (hash) => {
       /* content.appendChild(components.NavBar());
          content.appendChild(components.Profile());
          content.appendChild(components.Footer()); */
-      renderView([components.Profile()]);
+      renderView([components.Profile(), components.NavLeft(), components.NavRight()]);
       break;
     default:
       content.appendChild(components.Error());
