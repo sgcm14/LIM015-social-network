@@ -4,47 +4,58 @@ import { estaLogueado, loginConGoogle, registrarUsuario, validarLogin } from '..
 export const login = () => {
   estaLogueado(); // si usuario esta autenticado redirige a HOME
   const containerLogin = document.createElement('section');
+  containerLogin.className = 'login-content';
   const figure = document.createElement('figure');
+  figure.className = 'login-left';
   const main = document.createElement('main');
-  const contentFigure = `<img src="https://tipsmake.com/data1/thumbs/how-to-extract-img-files-in-windows-10-thumb-bzxI4IDgg.jpg"/>
-                        <img src="https://pbs.twimg.com/profile_images/714086375063228416/Rp1kKJce_400x400.jpg"/>`;
-  const contentMain = `<form>
-                       <h1>Introduce tus datos para iniciar sesión</h1>
-                        <div id="msjError"></div>
-                        <input type="email" id ="txtEmail" placeholder="Correo Electrónico" /><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
-                          </svg><br>
-                        <input type="password" id ="txtPassword" placeholder="Contraseña" /><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-                          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
-                          </svg><br>
-                       <button type="submit" id="btnLoginEmail" >Iniciar Sesión</button>
+  main.className = 'login-right';
+  const contentFigure = `<img id="login-logoImg" src="./assets/img/logoCodeGirls.svg" alt="logo"/>
+                         <img id="login-programadoraImg" src="./assets/img/ImagenCodeGirls.svg" alt="imagen de programadora"/>`;
+  const contentMain = `<form id="login-form">
+                        <br>
+                        <h1 class="login-fontBlack">Introduce tus datos para iniciar sesión</h1>
+                            <div id="msjError" class="login-mjsError"></div>
+                            <input class="login-inputs inputEmail" type="email" id ="txtEmail" placeholder="Correo Electrónico" /><br/>
+                            <input class="login-inputs inputPassword" type="password" id ="txtPassword" placeholder="Contraseña" /><br/>
+                        <button type="submit" id="btnLoginEmail" class="login-buttons">Iniciar Sesión</button>
 
-                       <hr>
-                       <div id="msjErrorGoogle"></div>
-                       <button type="submit" id="btnLoginGoogle">Iniciar Sesión con Google</button>
-
-                       <p>o crea una cuenta nueva</p>
-                       <button type="submit" id="btnCreateEmail">Crear Cuenta</button>
-                        <div id="modal" class="modalContainer">
-                          <div class="modal-content">
-                            <span class="close">×</span>
-                            <h1>Contacta con mas Aliadas</h1>
-                            <div id="msjErrorModal"></div>
-                            <input type="email" id ="txtEmailRegister" placeholder="Correo Electrónico" /><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
-                              </svg><br>
-                            <input type="password" id ="txtPasswordRegister" placeholder="Contraseña" /><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-                              <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
-                              </svg><br>
-                            <button  type="submit" id="btnRegister">Crear Cuenta</button>
-                          </div>
-                        </div>
-                       </form>`;
+                        <hr id="hrContent">
+                        <br>
+                            <div id="msjErrorGoogle" class="login-mjsError"></div>
+                        <button type="submit" id="btnLoginGoogle" class="login-buttons">Continuar con Google</button>
+                        
+                        <p class="login-fontBlack"><br>o crea una cuenta nueva</p>
+                        <button type="submit" id="btnCreateEmail" class="login-buttons">Crear Cuenta</button>
+                            <div id="modal" class="modalContainer">
+                              <div class="modal-content">
+                                    <span class="close">×</span>
+                                    <h1 id="titleModal">Contacta con mas Aliadas</h1>
+                                        <div id="msjErrorModal" class="login-mjsError">advertencia de error</div>
+                                        <input class="login-inputs inputEmail" type="email" id ="txtEmailRegister" placeholder="Correo Electrónico" /><br/>
+                                        <input class="login-inputs inputPassword" type="password" id ="txtPasswordRegister" placeholder="Contraseña" /><br/>
+                                    <button  type="submit" id="btnRegister" class="login-buttons">Crear Cuenta</button><br/>
+                                    <img id="loginModal-logoImg" src="./assets/img/logoCodeGirls.svg" alt="logo">
+                              </div>
+                            </div>
+                      </form>`;
 
   figure.innerHTML = contentFigure;
   main.innerHTML = contentMain;
   containerLogin.appendChild(figure);
   containerLogin.appendChild(main);
+
+  function clearInputs() {
+    containerLogin.querySelector('#txtEmail').value = '';
+    containerLogin.querySelector('#txtPassword').value = '';
+    containerLogin.querySelector('#txtEmailRegister').value = '';
+    containerLogin.querySelector('#txtPasswordRegister').value = '';
+    containerLogin.querySelector('#msjErrorModal').innerText = '';
+    containerLogin.querySelector('#msjErrorModal').style.display = 'none';
+    containerLogin.querySelector('#msjErrorGoogle').innerText = '';
+    containerLogin.querySelector('#msjErrorGoogle').style.display = 'none';
+    containerLogin.querySelector('#msjError').innerText = '';
+    containerLogin.querySelector('#msjError').style.display = 'none';
+  }
   /*
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -73,6 +84,7 @@ export const login = () => {
     const txtPassword = containerLogin.querySelector('#txtPassword').value;
     // Validar Login para Iniciar Sesión con Correo
     validarLogin(txtEmail, txtPassword);
+    clearInputs();
   });
 
   // Botón para Iniciar Sesión con Google
@@ -80,6 +92,7 @@ export const login = () => {
     event.preventDefault();
     // Validar Login para Iniciar Sesión con Google
     loginConGoogle();
+    clearInputs();
   });
 
   // Botón para mostrar el modal de Crear Cuenta
@@ -88,9 +101,7 @@ export const login = () => {
 
     if (containerLogin.querySelector('#btnCreateEmail')) {
       // Limpiar inputs y mensajes de Error
-      containerLogin.querySelector('#txtEmailRegister').value = '';
-      containerLogin.querySelector('#txtPasswordRegister').value = '';
-      containerLogin.querySelector('#msjErrorModal').innerText = '';
+      clearInputs();
 
       const modal = containerLogin.querySelector('#modal');
       // Devuelve una lista de elementos que cumplen con la selección (notación como en CSS)

@@ -1,8 +1,8 @@
 export const footer = () => {
-  const container = document.createElement('div');
-  const template = `
-        <p>| codegirls 2021°|</p>
-      `;
-  container.innerHTML = template;
+  const container = document.createElement('footer');
+  const copyright = new Date();
+  const update = copyright.getFullYear();
+  const footerTexto = `© 2021 - ${update} <CodeGirls>`;
+  container.innerText = footerTexto;
   return container;
 };

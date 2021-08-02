@@ -61,6 +61,7 @@ export const validarLogin = (email, password) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       const content = document.querySelector('#msjError');
+      content.style.display = 'block';
       console.log(errorCode);
       console.log(errorMessage);
       switch (errorCode) {
@@ -95,6 +96,7 @@ export const loginConGoogle = () => {
       const errorCode = error.code;
       const errorMessage = error.message;
       const content = document.querySelector('#msjErrorGoogle');
+      content.style.display = 'block';
       switch (errorCode) {
         case 'auth/popup-closed-by-user':
           content.innerText = 'El usuario cerró la ventana emergente sin completar el inicio de sesión en el proveedor.';
@@ -123,6 +125,7 @@ export const registrarUsuario = (email, password) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       const content = document.querySelector('#msjErrorModal');
+      content.style.display = 'block';
       switch (errorCode) {
         case 'auth/weak-password':
           content.innerText = 'La contraseña es demasiado débil.';
