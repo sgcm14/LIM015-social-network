@@ -630,14 +630,14 @@ footer{
   background: #F8F8F8;
   border: 1px #0793E2 solid;
   background: url(./assets/img/google.png) no-repeat scroll;
-  background-position: 3% center;
+  background-position: 10% center;
 }
 #btnLoginGoogle:hover{
   background: #f8f8f8;
   border: 1px #0793E2 solid;
   color: #0793E2;
   background: url(./assets/img/google.png) no-repeat scroll;
-  background-position: 3% center;
+  background-position: 10% center;
 }
 
 #btnCreateEmail{

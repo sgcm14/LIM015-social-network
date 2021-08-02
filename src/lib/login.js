@@ -22,7 +22,7 @@ export const login = () => {
                         <hr id="hrContent">
                         <br>
                             <div id="msjErrorGoogle" class="login-mjsError"></div>
-                        <button type="submit" id="btnLoginGoogle" class="login-buttons">Continuar con Google</button>
+                        <button type="submit" id="btnLoginGoogle" class="login-buttons">Acceder con Google</button>
                         
                         <p class="login-fontBlack"><br>o crea una cuenta nueva</p>
                         <button type="submit" id="btnCreateEmail" class="login-buttons">Crear Cuenta</button>
