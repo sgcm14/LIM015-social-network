@@ -159,7 +159,7 @@ export const registrarUsuario = (user) => {
       console.log(userCredential); */
       const idUser = userCredential.user.uid;
       const fullNameUser = `${user.name} ${user.lastName}`;
-      const photoUser = 'https://raw.githubusercontent.com/sgcm14/LIM015-social-network/main/src/assets/img/profile.jpg';
+      const photoUser = constantes.PHOTO_USER;
       // asigno values a sus Keys
       const newUser = {
         uid: idUser,
