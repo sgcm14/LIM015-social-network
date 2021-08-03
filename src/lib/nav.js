@@ -20,7 +20,7 @@ export const navBar = () => {
       <li>
        <a href="#" id="navHome"> Muro Principal </a>
       </li>
-      <li>
+      <li id = 'profile-style'>
        <a href="#" id="navProfile"><span id="photoProfile"></span> Mi perfil </a>
       </li>
       <li>

@@ -74,8 +74,9 @@ export const cerrarSesion = () => {
 export const validarLogin = (email, password) => {
   logueo()
     .signInWithEmailAndPassword(email, password)
-    .then((/* userCredential */) => {
-    /*  console.log('usuario logueado correo');
+    .then((userCredential) => {
+      const user = userCredential.user; // obtener el actual user
+      /*  console.log('usuario logueado correo');
       console.log(userCredential); */
       // constantes.URL_HOME=> '#/home' = url
       // window.location.hash(url) => redirect(url))
@@ -136,6 +137,7 @@ export const loginConGoogle = () => {
       }
       // constantes.URL_HOME=> '#/home' = url
       // window.location.hash(url) => redirect(url))
+      const user = userCredential.user; // obtener el actual user
       redirect(constantes.URL_HOME);
     })
     .catch((error) => {

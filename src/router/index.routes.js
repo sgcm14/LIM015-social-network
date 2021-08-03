@@ -36,7 +36,7 @@ export const router = (hash) => {
          content.appendChild(components.Posts());
          content.appendChild(components.AsideAliadas());
          content.appendChild(components.Footer()); */
-      renderView([components.Posts(), components.AsideAliadas()]);
+      renderView([components.AsideAliadas(), components.Posts()]);
       break;
     case constantes.URL_PROFILE:
       /* content.appendChild(components.NavBar());
