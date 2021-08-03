@@ -1,12 +1,14 @@
-import { cerrarSesion, checkLogin } from '../firebase/firebase.js';
+import { cerrarSesion, checkLogin, dataUsuario } from '../firebase/firebase.js';
 import { constantes, redirect } from './utilidades.js';
 
 // Menu Principal
 export const navBar = () => {
   checkLogin(); // si usuario no esta autenticado redirige a LOGIN
+  dataUsuario(); // tiene la data de usuario autenticado
   const container = document.createElement('nav');
 
   const template = `
+  <img src = 'assets/img/logoCodeGirls.svg' id = 'logo-cg'>
     <ul>
       <li>
        <a href="#" id="navNotifications"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app-indicator" viewBox="0 0 16 16">
@@ -19,7 +21,7 @@ export const navBar = () => {
        <a href="#" id="navHome"> Muro Principal </a>
       </li>
       <li>
-       <a href="#" id="navProfile"> Mi perfil </a>
+       <a href="#" id="navProfile"><span id="photoProfile"></span> Mi perfil </a>
       </li>
       <li>
        <a href="#" id="navLogout" > Salir </a>

@@ -5,16 +5,40 @@ function logueo() {
   return firebase.auth();
 }
 
+// llamando a firestore
+function dataBase() {
+  return firebase.firestore();
+}
+
 // Solo sirve para login.js
 export const estaLogueado = () => {
   // onAuthStateChanged =>Listar para estados de cambio en la autenticación
   logueo().onAuthStateChanged((user) => {
     if (user) {
       // user = true => usuario está autenticado
-      console.log('usuario autenticado');
+      // console.log('usuario autenticado');
       // constantes.URL_HOME=> '#/home' = url
       // window.location.hash(url) => redirect(url))
       redirect(constantes.URL_HOME);
+    }
+  });
+};
+
+export const dataUsuario = () => {
+  logueo().onAuthStateChanged((user) => {
+    // si usuario existe (logueado)
+    if (user) {
+      const idUser = user.uid;
+      // recorre coleccion USER de firestore donde idUser(usuario logueado) = uid(usuario en USER)
+      dataBase().collection(constantes.TABLA_USUARIO).where('uid', '==', idUser).get()
+        .then((data) => {
+          data.forEach((hijo) => {
+            console.log(hijo.data());
+            const datosUser = hijo.data();
+            console.log(datosUser.fullName);
+            document.querySelector('#photoProfile').innerHTML = `<img src= '${datosUser.photo}' />`;
+          });
+        });
     }
   });
 };
@@ -25,7 +49,7 @@ export const checkLogin = () => {
   logueo().onAuthStateChanged((user) => {
     if (!user) {
       // user = false => usuario no está autenticado
-      console.log('usuario NO autenticado');
+      // console.log('usuario NO autenticado');
       // constantes.URL_HOME=> '#/home' = url
       // window.location.hash(url) => redirect(url))
       redirect(constantes.URL_LOGIN);
@@ -35,9 +59,9 @@ export const checkLogin = () => {
 
 // Cerrar Sesión
 export const cerrarSesion = () => {
-  logueo().signOut().then((userCredential) => {
-    console.log('se cerró sesión');
-    console.log(userCredential);
+  logueo().signOut().then((/* userCredential */) => {
+  /*  console.log('se cerró sesión');
+    console.log(userCredential); */
     // constantes.URL_HOME=> '#/home' = url
     // window.location.hash(url) => redirect(url))
     redirect(constantes.URL_LOGIN);
@@ -50,9 +74,9 @@ export const cerrarSesion = () => {
 export const validarLogin = (email, password) => {
   logueo()
     .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      console.log('datos de usuario logueado');
-      console.log(userCredential);
+    .then((/* userCredential */) => {
+    /*  console.log('usuario logueado correo');
+      console.log(userCredential); */
       // constantes.URL_HOME=> '#/home' = url
       // window.location.hash(url) => redirect(url))
       redirect(constantes.URL_HOME);
@@ -62,17 +86,15 @@ export const validarLogin = (email, password) => {
       const errorMessage = error.message;
       const content = document.querySelector('#msjError');
       content.style.display = 'block';
-      console.log(errorCode);
-      console.log(errorMessage);
       switch (errorCode) {
         case 'auth/wrong-password':
-          content.innerText = 'Contraseña incorrecta.';
+          content.innerText = 'Usuario y/o contraseña incorrecta.';
           break;
         case 'auth/invalid-email':
           content.innerText = 'La dirección de correo electrónico no es válida.';
           break;
         case 'auth/user-not-found':
-          content.innerText = 'El usuario no coincide con ninguna credencial.';
+          content.innerText = 'Usuario y/o contraseña incorrecta.';
           break;
         default:
           content.innerText = errorMessage;
@@ -85,41 +107,74 @@ export const validarLogin = (email, password) => {
 export const loginConGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   logueo().signInWithPopup(provider)
-    .then((result) => {
-      console.log('datos de google');
-      console.log(result);
+    .then((userCredential) => {
+    /*  console.log('google');
+      console.log(userCredential); */
+      const newUser = userCredential.additionalUserInfo.isNewUser;
+      if (newUser) {
+        const idUser = userCredential.user.uid;
+        const nameUser = userCredential.additionalUserInfo.profile.given_name;
+        const lastNameUser = userCredential.additionalUserInfo.profile.family_name;
+        const fullNameUser = userCredential.additionalUserInfo.profile.name;
+        const photoUser = userCredential.additionalUserInfo.profile.picture;
+        const emailUser = userCredential.additionalUserInfo.profile.email;
+        // asigno values a sus Keys
+        const infoUser = {
+          uid: idUser,
+          name: nameUser,
+          lastName: lastNameUser,
+          fullName: fullNameUser,
+          photo: photoUser,
+          email: emailUser,
+          about: '',
+          url: '',
+          phrase: '',
+        };
+        // db.collection('pruebita')
+        dataBase().collection(constantes.TABLA_USUARIO)
+          .add(infoUser);
+      }
       // constantes.URL_HOME=> '#/home' = url
       // window.location.hash(url) => redirect(url))
       redirect(constantes.URL_HOME);
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
+      // const errorMessage = error.message;
       const content = document.querySelector('#msjErrorGoogle');
-      content.style.display = 'block';
-      switch (errorCode) {
-        case 'auth/popup-closed-by-user':
-          content.innerText = 'El usuario cerró la ventana emergente sin completar el inicio de sesión en el proveedor.';
-          break;
-        case 'auth/network-request-failed':
-          content.innerText = 'Error al conectarse a la red.';
-          break;
-        default:
-          content.innerText = errorMessage;
+      if (errorCode === 'auth/network-request-failed') {
+        content.style.display = 'block';
+        content.innerText = 'Error al conectarse a la red.';
       }
       // return content;
     });
 };
 
 // Registrar correo para Iniciar Sesión con Correo
-export const registrarUsuario = (email, password) => {
+export const registrarUsuario = (user) => {
   logueo()
-    .createUserWithEmailAndPassword(email, password)
+    .createUserWithEmailAndPassword(user.email, user.password)
     .then((userCredential) => {
-      console.log('se registro');
-      console.log(userCredential);
-      const iduser = userCredential.user.uid;
-      console.log(`----->>> ${iduser}`);
+    /*  console.log('se registro');
+      console.log(userCredential); */
+      const idUser = userCredential.user.uid;
+      const fullNameUser = `${user.name} ${user.lastName}`;
+      const photoUser = 'https://raw.githubusercontent.com/sgcm14/LIM015-social-network/main/src/assets/img/profile.jpg';
+      // asigno values a sus Keys
+      const newUser = {
+        uid: idUser,
+        name: user.name,
+        lastName: user.lastName,
+        fullName: fullNameUser,
+        photo: photoUser,
+        email: user.email,
+        about: '',
+        url: '',
+        phrase: '',
+      };
+      // db.collection('pruebita')
+      dataBase().collection(constantes.TABLA_USUARIO)
+        .add(newUser);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -128,13 +183,13 @@ export const registrarUsuario = (email, password) => {
       content.style.display = 'block';
       switch (errorCode) {
         case 'auth/weak-password':
-          content.innerText = 'La contraseña es demasiado débil.';
+          content.innerText = 'La contraseña es muy corta (Mínimo 6 caracteres).';
           break;
         case 'auth/email-already-in-use':
-          content.innerText = 'Ya tenía una cuenta con la dirección de correo electrónico proporcionada.';
+          content.innerText = 'El correo electrónico ya está registrado.';
           break;
         case 'auth/invalid-email':
-          content.innerText = 'La dirección de correo electrónico no es válida.';
+          content.innerText = 'Correo electrónico no válido.';
           break;
         default:
           content.innerText = errorMessage;

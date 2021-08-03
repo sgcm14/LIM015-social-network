@@ -29,11 +29,13 @@ export const login = () => {
                             <div id="modal" class="modalContainer">
                               <div class="modal-content">
                                     <span class="close">×</span>
-                                    <h1 id="titleModal">Contacta con mas Aliadas</h1>
+                                    <h1 id="titleModal">Contacta con más Aliadas</h1>
                                         <div id="msjErrorModal" class="login-mjsError">advertencia de error</div>
-                                        <input class="login-inputs inputEmail" type="email" id ="txtEmailRegister" placeholder="Correo Electrónico" /><br/>
-                                        <input class="login-inputs inputPassword" type="password" id ="txtPasswordRegister" placeholder="Contraseña" /><br/>
-                                    <button  type="submit" id="btnRegister" class="login-buttons">Crear Cuenta</button><br/>
+                                        <input class="login-inputs inputName" type="text" id ="txtNameRegister" placeholder="Nombres *" /><br/>
+                                        <input class="login-inputs inputLastName" type="text" id ="txtLastNameRegister" placeholder="Apellidos *" /><br/>
+                                        <input class="login-inputs inputEmail" type="email" id ="txtEmailRegister" placeholder="Correo Electrónico *" /><br/>
+                                        <input class="login-inputs inputPassword" type="password" id ="txtPasswordRegister" placeholder="Contraseña *" /><br/>
+                                    <button  type="submit" id="btnRegister" class="login-buttons">Registrarme</button><br/>
                                     <img id="loginModal-logoImg" src="./assets/img/logoCodeGirls.svg" alt="logo">
                               </div>
                             </div>
@@ -45,6 +47,8 @@ export const login = () => {
   containerLogin.appendChild(main);
 
   function clearInputs() {
+    containerLogin.querySelector('#txtNameRegister').value = '';
+    containerLogin.querySelector('#txtLastNameRegister').value = '';
     containerLogin.querySelector('#txtEmail').value = '';
     containerLogin.querySelector('#txtPassword').value = '';
     containerLogin.querySelector('#txtEmailRegister').value = '';
@@ -84,7 +88,7 @@ export const login = () => {
     const txtPassword = containerLogin.querySelector('#txtPassword').value;
     // Validar Login para Iniciar Sesión con Correo
     validarLogin(txtEmail, txtPassword);
-    clearInputs();
+    // clearInputs();
   });
 
   // Botón para Iniciar Sesión con Google
@@ -137,8 +141,16 @@ export const login = () => {
     event.preventDefault();
     const txtEmailRegister = containerLogin.querySelector('#txtEmailRegister').value;
     const txtPasswordRegister = containerLogin.querySelector('#txtPasswordRegister').value;
+    const txtNameRegister = containerLogin.querySelector('#txtNameRegister').value;
+    const txtLastNameRegister = containerLogin.querySelector('#txtLastNameRegister').value;
     // Registrar correo para Iniciar Sesión con Correo
-    registrarUsuario(txtEmailRegister, txtPasswordRegister);
+    const nuevoUsuario = {
+      name: txtNameRegister,
+      lastName: txtLastNameRegister,
+      email: txtEmailRegister,
+      password: txtPasswordRegister,
+    };
+    registrarUsuario(nuevoUsuario);
   });
 
   /* const userData = auth.child('user').child(authData.uid);

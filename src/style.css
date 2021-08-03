@@ -10,36 +10,67 @@
     color: white;
   }
   
+  /* ------Header-------- */
   nav {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr;
+    /* flex-wrap: wrap; */
     /* display: inline-flex; */
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    font-size: 13px;
     background-color: #565661;
     list-style: none;
     flex-direction: row;
     height: 75px;
     width: 100%;
-    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* padding: 10px; */
   }
   
   nav ul li {
     list-style: none;
-    display: flex;
+    /* display: flex; */
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; */
     /* display: inline; */
     margin: 20px;
-    
+    /* padding: 10px; */
+    text-align: center;
   }
   
   nav ul li a{
     color: white;
     text-decoration: none;
-    
   }
   nav ul{
     display: flex; 
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    /* padding-right: 10px; */
+    justify-content: flex-end;
+    align-self: flex-end;
+    text-align: end;
   }
+  
+  #logo-cg {
+    visibility: hidden;
+    height: 1px;
+    width: 1px;
+  }
+  
+  /* nav img {
+    visibility: hidden;
+    height: 1px;
+    width: 1px;
+  } */
+
+  #line-nav {
+    height: 3px;
+    background-color: rgba(249, 76, 162, 1);
+  }
+  /* ---------------------- */
   
   #btn-new-post-container {
     display: flex;
@@ -583,6 +614,7 @@ footer{
 
 /*cajas de texto*/
 .login-inputs{
+  outline: none;
   font-size: 15px;
   color: rgba(0,0,0,.8);
   padding: 12px 5px;
@@ -590,6 +622,12 @@ footer{
   border-radius: 5px;
   border: 1px #F94CA2 solid; 
   width: 100%;   
+}
+
+.inputName, .inputLastName{
+  background: url(./assets/img/person.svg) no-repeat scroll;
+  background-position: 98% center;
+  background-color: #ffffff;
 }
 
 .inputPassword{
@@ -652,15 +690,20 @@ footer{
 }
 
 #btnRegister{
-  background: #565661;
+  /* background: #565661;
   border: 1px #F94CA2 solid;
-  color: #F94CA2;
-
+  color: #F94CA2; */
+  background: #F94CA2;
+  color: #ffffff;
+  border: 1px #F94CA2 solid;
 }
 #btnRegister:hover{
-  background: #F94CA2;
+  /* background: #F94CA2;
   border: 1px #F94CA2 solid;
-  color: #565661;
+  color: #565661; */
+  background: rgba(249, 76, 162, 0.12);
+  color: #F94CA2;
+  border: 1px #F94CA2 solid;
 }
 
 
@@ -669,7 +712,7 @@ footer{
   display: none; 
   position: fixed; 
   z-index: 1;
-  padding-top: 100px;
+  padding-top: 30px;
   left: 0;
   top: 0;
   width: 100%;
@@ -689,6 +732,7 @@ footer{
   background: rgba(249, 76, 162, 0.12);
   color: #F94CA2;
   margin: 40px 0;
+  font-size: 25px;
 }
 #loginModal-logoImg{
   width: 80px;
