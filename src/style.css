@@ -947,7 +947,7 @@ footer{
   font-size: 1em;
   padding: 5px;
   margin: 5px;
-  height: 50px;
+  /*height: 50px;*/
   display: none;
 }
 
@@ -1019,17 +1019,18 @@ footer{
 }
 
 #btnLoginGoogle{
-  background: #F8F8F8;
-  border: 1px #0793E2 solid;
   background: url(./assets/img/google.png) no-repeat scroll;
+  background-color: #F8F8F8;
   background-position: 10% center;
+  border: 1px #0793E2 solid;
+  padding: 12px 80px;
 }
 #btnLoginGoogle:hover{
-  background: #f8f8f8;
-  border: 1px #0793E2 solid;
-  color: #0793E2;
   background: url(./assets/img/google.png) no-repeat scroll;
+  background-color: #f8f8f8;
   background-position: 10% center;
+  border: 1px #0793E2 solid;
+  color: #0793E2;  
 }
 
 #btnCreateEmail{
@@ -1121,9 +1122,9 @@ footer{
       border-bottom: 10px solid #F94CA2;
       padding: 0 15px;
   }
-  .login-buttons{
+  /*.login-buttons{
       padding: 12px 50px !important;
-  }
+  }*/
   .login-fontBlack {
       margin: 0px !important;
   }
@@ -1153,7 +1154,7 @@ footer{
       margin: 2px !important;
   }
   .login-buttons{
-      padding: 12px 50px !important;
+      /*padding: 12px 50px !important;*/
       margin: 5px;
   }
   .login-right {
@@ -1174,7 +1175,7 @@ footer{
       margin: 5px 20px;
   }
   .login-buttons{
-      padding: 12px 50px;
+      /*padding: 12px 50px;*/
       margin: 5px;
   }
 }
@@ -1213,7 +1214,7 @@ footer{
   }
 
   .login-buttons{
-      padding: 12px 50px;
+      /*padding: 12px 50px;*/
       margin: 5px;
   }
 
@@ -1256,7 +1257,7 @@ footer{
   }
 
   .login-buttons{
-      padding: 12px 50px;
+      /*padding: 12px 50px;*/
       margin: 5px;
   }
 
