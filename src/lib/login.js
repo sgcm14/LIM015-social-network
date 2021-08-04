@@ -84,6 +84,8 @@ export const login = () => {
   // Botón para Iniciar Sesión con correo
   btnLoginEmail.addEventListener('click', (event) => {
     event.preventDefault();
+    containerLogin.querySelector('#msjError').innerText = '';
+    containerLogin.querySelector('#msjError').style.display = 'none';
     const txtEmail = containerLogin.querySelector('#txtEmail').value;
     const txtPassword = containerLogin.querySelector('#txtPassword').value;
     // Validar Login para Iniciar Sesión con Correo
@@ -143,14 +145,20 @@ export const login = () => {
     const txtPasswordRegister = containerLogin.querySelector('#txtPasswordRegister').value;
     const txtNameRegister = containerLogin.querySelector('#txtNameRegister').value;
     const txtLastNameRegister = containerLogin.querySelector('#txtLastNameRegister').value;
-    // Registrar correo para Iniciar Sesión con Correo
-    const nuevoUsuario = {
-      name: txtNameRegister,
-      lastName: txtLastNameRegister,
-      email: txtEmailRegister,
-      password: txtPasswordRegister,
-    };
-    registrarUsuario(nuevoUsuario);
+    const mjsError = containerLogin.querySelector('#msjErrorModal');
+    if (txtEmailRegister === '' || txtPasswordRegister === '' || txtNameRegister === '' || txtLastNameRegister === '') {
+      mjsError.style.display = 'block';
+      mjsError.innerText = 'Debe llenar todo los campos';
+    } else {
+      // Registrar correo para Iniciar Sesión con Correo
+      const nuevoUsuario = {
+        name: txtNameRegister,
+        lastName: txtLastNameRegister,
+        email: txtEmailRegister,
+        password: txtPasswordRegister,
+      };
+      registrarUsuario(nuevoUsuario);
+    }
   });
 
   /* const userData = auth.child('user').child(authData.uid);
