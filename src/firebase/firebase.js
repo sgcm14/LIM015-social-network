@@ -33,9 +33,9 @@ export const dataUsuario = () => {
       dataBase().collection(constantes.TABLA_USUARIO).where('uid', '==', idUser).get()
         .then((data) => {
           data.forEach((hijo) => {
-            console.log(hijo.data());
+            // console.log(hijo.data());
             const datosUser = hijo.data();
-            console.log(datosUser.fullName);
+            // console.log(datosUser.fullName);
             document.querySelector('#photoProfile').innerHTML = `<img src= '${datosUser.photo}' />`;
           });
         });
@@ -74,8 +74,8 @@ export const cerrarSesion = () => {
 export const validarLogin = (email, password) => {
   logueo()
     .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user; // obtener el actual user
+    .then((/* userCredential */) => {
+      // const user = userCredential.user; // obtener el actual user
       /*  console.log('usuario logueado correo');
       console.log(userCredential); */
       // constantes.URL_HOME=> '#/home' = url
@@ -137,7 +137,7 @@ export const loginConGoogle = () => {
       }
       // constantes.URL_HOME=> '#/home' = url
       // window.location.hash(url) => redirect(url))
-      const user = userCredential.user; // obtener el actual user
+      // const user = userCredential.user; // obtener el actual user
       redirect(constantes.URL_HOME);
     })
     .catch((error) => {

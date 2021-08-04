@@ -1,6 +1,9 @@
 import { postTemplate } from '../templates/postTemplate.js';
 import { commentTemplate } from '../templates/commentTemplate.js';
 import { constantes, redirect } from './utilidades.js';
+import {
+  deletePost, editHeart, getPost, saveComment, savePosts, updatePost, updatePrivacy,
+} from '../firebase/firestore.js';
 
 // ------------Publicaciones------------------
 export const posts = () => {
@@ -125,16 +128,15 @@ export const posts = () => {
     containerPosts.querySelector('#post-create').style.display = 'none';
     containerPosts.querySelector('#btn-new-post').style.display = 'flex';
     document.querySelector('#post-content').value = '';
-    // postForm['btn-form-save'].innerText = 'Publicar';
   });
 
   /* ======================== Subir Imagen ==================================== */
-  let file;
-  const btnAddImage = containerPosts.querySelector('#addImage');
-  btnAddImage.addEventListener('change', (e) => {
-    file = e.target.files[0];
-    console.log(file);
-  });
+  // let file;
+  // const btnAddImage = containerPosts.querySelector('#addImage');
+  // btnAddImage.addEventListener('change', (e) => {
+  //   file = e.target.files[0];
+  //   console.log(file);
+  // });
 
   // console.log(file);
   /* ========================Privacity post==================================== */
@@ -144,47 +146,7 @@ export const posts = () => {
     privacyUserPost = selectPrivacy.value;
   });
 
-  /* ======================== Funciones CRUD de posts ==================================== */
-
-  // ---Función obtener un post especifico---
-  const getPost = (id) => db.collection('posts').doc(id).get();
-  // ---Función guardar post---
-  const savePosts = (post) => {
-    // se crea una colección 'posts' con los campos post y timestamp
-    db.collection('posts').doc().set({
-      post,
-      timestamp: FieldValue.serverTimestamp(), // tiempo de creación del post en nanosegundos
-      name: displayName,
-      photo: photoURL,
-      email,
-      uid,
-      privacy: privacyUserPost,
-      datePost,
-      hearts: [],
-    });
-  };
-  // ---Función actualizar un post especifico---
-  const updatePost = (id, updatedPost) => db.collection('posts').doc(id).update(updatedPost);
-  // ---Función borrar un post especifico---
-  const deletePost = (id) => db.collection('posts').doc(id).delete();
-  // --- Actualizar privacidad ---
-  const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
-  // --- Hearts ---
-  const editHeart = (id, hearts) => db.collection('posts').doc(id).update({ hearts });
-  // --- Función guardar comentario ---
-  const saveComment = (comment, idComment) => {
-    // se crea una colección 'posts' con los campos post y timestamp
-    db.collection('comments').doc().set({
-      comment,
-      timestamp: FieldValue.serverTimestamp(), // tiempo de creación
-      name: displayName,
-      photo: photoURL,
-      idComment,
-      datePost,
-      uid,
-      email,
-    });
-  };
+  /* ======================== Funciones CRUD get posts ==================================== */
 
   // Obtener post y pintarlos en el muro principal
   const getPosts = () => {
@@ -299,8 +261,8 @@ export const posts = () => {
             const comment = newComment.value;
             // console.log(comment);
 
-            saveComment(comment, idComment);
-
+            saveComment(comment, idComment, FieldValue, displayName,
+              photoURL, datePost, uid, email);
             newComment.value = '';
           };
         });
@@ -316,7 +278,8 @@ export const posts = () => {
     e.preventDefault();
     const post = postForm['post-content'];
 
-    await savePosts(post.value); // Guardamos el contenido del post
+    // await savePosts(post.value); // Guardamos el contenido del post
+    savePosts(post.value, FieldValue, displayName, photoURL, email, uid, privacyUserPost, datePost);
 
     getPosts();
     // heartsFunction();
