@@ -83,6 +83,8 @@ export const validarLogin = (email, password) => {
       redirect(constantes.URL_HOME);
     })
     .catch((error) => {
+      document.querySelector('#btnLoginEmail').innerHTML = 'Iniciar Sesión';
+      document.querySelector('#btnLoginEmail').disabled = false;
       const errorCode = error.code;
       const errorMessage = error.message;
       const content = document.querySelector('#msjError');
@@ -96,6 +98,9 @@ export const validarLogin = (email, password) => {
           break;
         case 'auth/user-not-found':
           content.innerText = 'Usuario y/o contraseña incorrecta.';
+          break;
+        case 'auth/too-many-requests':
+          content.innerText = 'Superó su numero de intentos permitidos, vuelva a intentarlo luego';
           break;
         default:
           content.innerText = errorMessage;
@@ -179,6 +184,8 @@ export const registrarUsuario = (user) => {
         .add(newUser);
     })
     .catch((error) => {
+      document.querySelector('#btnRegister').innerHTML = 'Registrarme';
+      document.querySelector('#btnRegister').disabled = false;
       const errorCode = error.code;
       const errorMessage = error.message;
       const content = document.querySelector('#msjErrorModal');

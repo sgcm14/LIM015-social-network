@@ -86,6 +86,8 @@ export const login = () => {
     event.preventDefault();
     containerLogin.querySelector('#msjError').innerText = '';
     containerLogin.querySelector('#msjError').style.display = 'none';
+    btnLoginEmail.innerHTML = 'Espere....';
+    btnLoginEmail.disabled = true;
     const txtEmail = containerLogin.querySelector('#txtEmail').value;
     const txtPassword = containerLogin.querySelector('#txtPassword').value;
     // Validar Login para Iniciar Sesión con Correo
@@ -146,9 +148,13 @@ export const login = () => {
     const txtNameRegister = containerLogin.querySelector('#txtNameRegister').value;
     const txtLastNameRegister = containerLogin.querySelector('#txtLastNameRegister').value;
     const mjsError = containerLogin.querySelector('#msjErrorModal');
+    btnRegister.innerHTML = 'Espere....';
+    btnRegister.disabled = true;
     if (txtEmailRegister === '' || txtPasswordRegister === '' || txtNameRegister === '' || txtLastNameRegister === '') {
       mjsError.style.display = 'block';
       mjsError.innerText = 'Debe llenar todo los campos';
+      btnRegister.innerHTML = 'Registrarme';
+      btnRegister.disabled = false;
     } else {
       // Registrar correo para Iniciar Sesión con Correo
       const nuevoUsuario = {
