@@ -274,7 +274,7 @@ export const posts = () => {
 
   // -------------------
 
-  postForm.addEventListener('submit', async (e) => {
+  postForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const post = postForm['post-content'];
 
