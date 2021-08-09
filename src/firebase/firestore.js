@@ -49,3 +49,12 @@ export const saveComment = (
     email,
   });
 };
+
+export const getPos = (callback) => firebase.firestore().collection('posts')
+  .onSnapshot((querySnapshot) => {
+    const data = [];
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data() });
+    });
+    callback(data);
+  });
