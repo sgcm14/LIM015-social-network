@@ -116,14 +116,20 @@ nav ul{
 #btn-new-post div {
   margin: 5px;
 }
-
+/* --------------Error message-------------- */
+#alert-empty-message {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}
+/* ---------------Line----------- */
 #line-after {
   display: flex;
   height: 10px;
   margin: 0px 10px 0px 10px;
   background-color: rgba(249, 76, 162, 0.2);
 }
-
+/* -----------Wall container post------------ */
 #wall-container {
   display: grid;
   /* flex-direction: column; */
