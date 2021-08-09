@@ -6,20 +6,26 @@ export const getPost = (id) => firebase.firestore().collection('posts').doc(id).
 export const savePosts = (
   post, FieldValue, displayName, photoURL,
   email, uid, privacyUserPost, datePost,
-) => {
+) => new Promise((resolve, reject) => {
+  if (post === '') {
+    // eslint-disable-next-line
+    reject('No se pudo publicar: Post vacío.');
+  } else {
   // se crea una colección 'posts' con los campos post y timestamp
-  firebase.firestore().collection('posts').doc().set({
-    post,
-    timestamp: FieldValue.serverTimestamp(), // tiempo de creación del post en nanosegundos
-    name: displayName,
-    photo: photoURL,
-    email,
-    uid,
-    privacy: privacyUserPost,
-    datePost,
-    hearts: [],
-  });
-};
+    const saveResult = firebase.firestore().collection('posts').doc().set({
+      post,
+      timestamp: FieldValue.serverTimestamp(), // tiempo de creación del post en nanosegundos
+      name: displayName,
+      photo: photoURL,
+      email,
+      uid,
+      privacy: privacyUserPost,
+      datePost,
+      hearts: [],
+    });
+    resolve(saveResult);
+  }
+});
 
 // ---Función actualizar un post especifico---
 export const updatePost = (id, updatedPost) => firebase.firestore().collection('posts').doc(id).update(updatedPost);
