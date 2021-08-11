@@ -44,7 +44,7 @@ export const posts = () => {
     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
   </svg> <div> Crear nueva publicación </div></button>
     </div>
-    <div id = 'alert-empty-message'></div>
+
     <div class='post-container' id='post-create' style='display:none;'>
     <div id = 'user-info'>
     ${photoURL ? `<img id='user-image' src="${photoURL}" > ` : '<img id="user-image" src="assets/img/user.png">'}
@@ -110,20 +110,14 @@ export const posts = () => {
   let idPost = '';
 
   const postForm = containerPosts.querySelector('#post-form');
-  const divEmptyMessage = containerPosts.querySelector('#alert-empty-message');
+
+  const postContent = postForm['post-content'];
 
   // ---Mostrar y ocultar boton de creación de nuevo post---
   const btnNewPost = containerPosts.querySelector('#btn-new-post');
   btnNewPost.addEventListener('click', () => {
     containerPosts.querySelector('#post-create').style.display = 'flex';
     containerPosts.querySelector('#btn-new-post').style.display = 'none';
-    divEmptyMessage.innerHTML = '';
-  });
-
-  const btnSave = containerPosts.querySelector('#btn-form-save');
-  btnSave.addEventListener('click', () => {
-    containerPosts.querySelector('#post-create').style.display = 'none';
-    containerPosts.querySelector('#btn-new-post').style.display = 'flex';
   });
 
   const btnDiscard = containerPosts.querySelector('#btn-form-discard');
@@ -285,21 +279,19 @@ export const posts = () => {
   // -------------------
 
   postForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const post = postForm['post-content'];
-    // console.log(post.value);
-    // await savePosts(post.value); // Guardamos el contenido del post
-    savePosts(post.value, FieldValue, displayName, photoURL, email, uid, privacyUserPost, datePost)
-      .then(() => {
-        getPosts();
-      }).catch((error) => {
-        // alert(error);
-        // const divEmptyMessage = containerPosts.querySelector('#alert-empty-message');
-        divEmptyMessage.innerHTML = error;
-      });
+    if (postContent.value !== '') {
+      e.preventDefault();
+      // const post = postForm['post-content'];
+      // console.log(post.value);
+      // await savePosts(post.value); // Guardamos el contenido del post
+      savePosts(
+        postContent.value, FieldValue, displayName, photoURL, email, uid, privacyUserPost, datePost,
+      );
 
-    // getPosts();
-    // heartsFunction();
+      containerPosts.querySelector('#post-create').style.display = 'none';
+      containerPosts.querySelector('#btn-new-post').style.display = 'flex';
+    }
+    getPosts();
 
     postForm.reset();
   });
@@ -333,7 +325,7 @@ export const asideAliadas = () => {
       const templateAliada = `
       <div id = 'aliada-info'>
       <img src = '${userDoc.photo ? userDoc.photo : 'assets/img/user.png'}' id = 'img-aliada'>
-      <div id = 'name-aliada'>${userDoc.name ? userDoc.name : userDoc.email}</div>
+      <div id = 'name-aliada'>${userDoc.name ? userDoc.fullName : userDoc.email}</div>
       </div>
       `;
       aliadasWall.innerHTML += templateAliada;
