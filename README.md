@@ -361,14 +361,14 @@ hacerlo, puedes guiarte de los proyectos anteriores.
 ![Historias de usuario](https://raw.githubusercontent.com/sgcm14/LIM015-social-network/main/src/assets/img/historiasUsuarios.jpg)
 
 
-  - [ ]Debe ser una SPA.
-  - [ ]Debe ser _responsive_.
-  - [ ]Deben haber recibido _code review_ de al menos una compañera de otro equipo.
-  - [ ]Hicieron los _test_ unitarios
-  - [ ]Testearon manualmente buscando errores e imperfecciones simples.
-  - [ ]Hicieron _pruebas_ de usabilidad e incorporaron el _feedback_ de los
+  - [x]Debe ser una SPA.
+  - [x]Debe ser _responsive_.
+  - [x]Deben haber recibido _code review_ de al menos una compañera de otro equipo.
+  - [x]Hicieron los _test_ unitarios
+  - [x]Testearon manualmente buscando errores e imperfecciones simples.
+  - [x]Hicieron _pruebas_ de usabilidad e incorporaron el _feedback_ de los
     usuarios como mejoras.
-  - [ ]Desplegaron su aplicación y etiquetaron la versión (git tag).
+  - [x]Desplegaron su aplicación y etiquetaron la versión (git tag).
 
 ### 5.4 Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
 
@@ -469,14 +469,6 @@ a continuación.
 Debe verse bien en dispositivos de pantallas grandes
 (computadoras/es, laptops, etc.) y pequeñas (_tablets_, celulares, etc.). Te
 sugerimos seguir la técnica de _`mobile first`_ (más detalles sobre esta técnica al final).
-
-* Vista mobile
-
-    ![mobile]( )
-
-* Vista Desktop
-
-    ![desktop]( )
     
 ### 5.7 Consideraciones del comportamiento de la interfaz de usuario (UI)
 
@@ -485,34 +477,34 @@ Estas consideraciones te ayudarán a escribir las Definiciones de Terminado de t
 #### Creación de cuenta de usuario e inicio de sesión
 
 * _Login_ con Firebase:
-  - [ ] Para el _login_ y las publicaciones en el muro puedes utilizar [Firebase](https://firebase.google.com/products/database/)
-  - [ ] Creación de cuenta de acceso y autenticación con cuenta de correo y
+  - [x] Para el _login_ y las publicaciones en el muro puedes utilizar [Firebase](https://firebase.google.com/products/database/)
+  - [x] Creación de cuenta de acceso y autenticación con cuenta de correo y
     contraseña, y también con una cuenta de Google.
 * Validaciones:
-  - [ ] Solamente se permite el acceso a usuarios con cuentas válidas.
-  - [ ] No pueden haber usuarios repetidos.
-  - [ ] La cuenta de usuario debe ser un correo electrónico válido.
-  - [ ] Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
+  - [x] Solamente se permite el acceso a usuarios con cuentas válidas.
+  - [x] No pueden haber usuarios repetidos.
+  - [x] La cuenta de usuario debe ser un correo electrónico válido.
+  - [x] Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
 * Comportamiento:
-  - [ ] Al enviarse el formulario de registro o inicio de sesión, debe validarse.
-  - [ ] Si hay errores, se deben mostrar mensajes descriptivos para ayudar al
+  - [x] Al enviarse el formulario de registro o inicio de sesión, debe validarse.
+  - [x] Si hay errores, se deben mostrar mensajes descriptivos para ayudar al
   usuario a corregirlos.
 
 #### Muro/timeline
 
 * Validaciones:
-  - [ ] Al publicar, se debe validar que exista contenido en el _input_.
+  - [x] Al publicar, se debe validar que exista contenido en el _input_.
 * Comportamiento:
-  - [ ] Al recargar la aplicación, se debe verificar si el usuario está _logueado_
+  - [x] Al recargar la aplicación, se debe verificar si el usuario está _logueado_
     antes de mostrar contenido.
-  - [ ] Poder publicar un _post_.
-  - [ ] Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
-  - [ ] Llevar un conteo de los _likes_.
-  - [ ] Poder eliminar un post específico.
+  - [x] Poder publicar un _post_.
+  - [x] Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
+  - [x] Llevar un conteo de los _likes_.
+  - [x] Poder eliminar un post específico.
   - [ ] Pedir confirmación antes de eliminar un _post_.
-  - [ ] Al dar _click_ para editar un _post_, debe cambiar el texto por un _input_que permita editar el texto y luego guardar los cambios.
-  - [ ] Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la información editada.
-  - [ ] Al recargar la página debo de poder ver los textos editados.
+  - [x] Al dar _click_ para editar un _post_, debe cambiar el texto por un _input_que permita editar el texto y luego guardar los cambios.
+  - [x] Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la información editada.
+  - [x] Al recargar la página debo de poder ver los textos editados.
 
 ### 5.8 Consideraciones técnicas Front-end
 
@@ -531,11 +523,21 @@ Estas consideraciones te ayudarán a escribir las Definiciones de Terminado de t
 
 ### 5.9 Consideraciones técnicas UX
 
-* Hacer al menos 2 entrevistas con usuarios.
+* Hacer al menos 2 entrevistas con usuarios: Cuando terminamos de hacer los prototipos en figma, les pasabamos el link a nuestros usuarios. De los cuáles comentaron:
+  - El color de los botones de iniciar sesión con google confunden y parece inicio con facebook.
+  - Los colores de la página no me llaman tanto, porque me gustan más los colores oscuros.
+  - Me encanta y me inspira poder agregar mi frase favorita en mi perfil, ya quiero que este este terminada y poder usar su pagina.
+  - Tu prototipo me encanta.
+  - Los botones en login confunden y no son asimétricos.
+  - Los botones y los inputs en el home tienen el mismo estilo  y a primera vista me pareció que todos eran inputs.
+  - Los botones de eliminar y modificar  de los comentarios podrian ser más amigables.
+
 * Hacer un prototipo de baja fidelidad.
-* Asegurarte de que la implementación en código siga los lineamientos del
-  diseño.
-* Hacer sesiones de _testing de usabilidad_ con el producto en HTML.
+* Asegurarte de que la implementación en código siga los lineamientos del diseño.
+* Hacer sesiones de testing de usabilidad con el producto en HTML: Mientras agregabamos maquetado, estilos y usabilidad, desplegamos en github pages, y pasamos el link a nuestros usuarios y nos dieron el siguiente feedback:
+  - Cuando me logueo la página no me avisa cuando cometo un error o si no escribo bien mis datos.
+  - Cuando me registro nose si el sistema está procesando mis datos, porque demora en cargar la página.
+  - No se adapta a mi dispositivo.
 
 ## 6. Hacker edition
 
@@ -548,7 +550,7 @@ profundizar y/o ejercitar más sobre los objetivos de aprendizaje del proyecto.
 - [ ] Permite definir la privacidad de los _posts_ (público o solamente para amigos).
 - [ ] Permite ver su muro de cualquier usuario "no-amigo" (solamente los
   posts _públicos_).
-- [ ] Permite comentar o responder una publicación.
+- [x] Permite comentar o responder una publicación.
 - [ ] Permite editar perfil.
 
 ## 7. Entrega
