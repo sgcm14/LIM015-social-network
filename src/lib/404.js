@@ -6,7 +6,7 @@ export const notFound = () => {
   const notas = `
       <img id="programadora-img" src="./assets/img/ImagenCodeGirls.svg" alt="imagen de programadora"/>
       <div id = 'error-404'>
-      <h2>error 404</h2>
+      <h2>Error 404</h2>
       <p>Página no encontrada</p>
       <button id = 'home-return'> Regresar </button>
       </div>

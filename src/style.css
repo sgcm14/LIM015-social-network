@@ -123,6 +123,8 @@ nav ul{
 #programadora-img {
   animation: orbit 2s infinite alternate;
   height: 250px;
+  margin-left: auto;
+  margin-right: auto;
  }
 #error-404 {
   display: flex;
