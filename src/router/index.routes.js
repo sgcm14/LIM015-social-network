@@ -29,7 +29,7 @@ export const router = (hash) => {
       /* content.appendChild(components.NavBar());
          content.appendChild(components.Notifications());
          content.appendChild(components.Footer()); */
-      renderView([components.Notifications()]);
+      renderView([components.Login()]);
       break;
     case constantes.URL_HOME:
       /* content.appendChild(components.NavBar());

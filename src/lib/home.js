@@ -196,7 +196,7 @@ export const posts = () => {
         const btnsDelete = document.querySelectorAll('.btn-delete');
         btnsDelete.forEach((btn) => {
           btn.addEventListener('click', (e) => {
-            // Elinamos el post
+            // Eliminamos el post
             deletePost(e.target.dataset.id);
             // Eliminamos los comentarios del post
             db.collection('comments').where('idComment', '==', e.target.dataset.id)
