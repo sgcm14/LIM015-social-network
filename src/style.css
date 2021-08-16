@@ -113,6 +113,42 @@ nav ul{
   margin: 0px 10px 0px 10px;
   background-color: rgba(249, 76, 162, 0.2);
 }
+/* -------Error 404---------- */
+.container-404 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 30px;
+  margin: 50px 20px;
+}
+#programadora-img {
+  animation: orbit 2s infinite alternate;
+  height: 250px;
+ }
+#error-404 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: 20px 30px 20px 20px;
+}
+#error-404 button {
+  width: 120px;
+  margin: 15px;
+  padding: 5px;
+  border-radius: 7px;
+  border: 1px solid rgba(249, 76, 162, 1);
+  background-color: rgba(249, 76, 162, 0.6);
+  color: white;
+  cursor: pointer;
+  align-self: center;
+}
+
+@keyframes orbit {
+  100% {
+    transform: translateX(-15px);
+  }
+}
+
 /* -----------Wall container post------------ */
 #wall-container {
   display: grid;
@@ -197,6 +233,11 @@ nav ul{
   background-color: rgba(249, 76, 162, 0.8);
 }
 
+/* ---hover btn error 404 */
+#error-404 button:hover {
+  background-color: rgba(249, 76, 162, 0.9);
+}
+/* ---------------------- */
 #btns-emoji-discard {
   display: grid;
   grid-template-columns: 1fr 1fr;
