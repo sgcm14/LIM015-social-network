@@ -4,13 +4,12 @@ import { router } from './router/index.routes.js';
 const init = () => {
 // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: 'AIzaSyAMDLCdM0Co5r2KQuPGFGsRr0rfQXYhFwg',
-    authDomain: 'code-girls-laboratoria.firebaseapp.com',
-    projectId: 'code-girls-laboratoria',
-    storageBucket: 'code-girls-laboratoria.appspot.com',
-    messagingSenderId: '867416364381',
-    appId: '1:867416364381:web:943663b57ef7fc0bf104b4',
-    measurementId: 'G-SQWJG6X2L0',
+    apiKey: 'AIzaSyD1jf74_DRYG903CVvK5ij3ESDXbhbI3qc',
+    authDomain: 'code-girls-cbea3.firebaseapp.com',
+    projectId: 'code-girls-cbea3',
+    storageBucket: 'code-girls-cbea3.appspot.com',
+    messagingSenderId: '703298018862',
+    appId: '1:703298018862:web:82aea256eb03a88bba89bf',
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
