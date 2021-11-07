@@ -1,6 +1,4 @@
-# ✨ < CodeGirls > ✨ (Laboratoria)
-
-![RedSocial](https://raw.githubusercontent.com/sgcm14/LIM015-social-network/main/src/assets/img/testing.jpg)
+# < CodeGirls > (Laboratoria)
 
 - Este proyecto se realizó siguiendo estas consideraciones [El Proyecto](https://github.com/Laboratoria/LIM015-social-network) , lo desarrollé dentro del segundo mes en [Laboratoria - Sede Lima](https://www.laboratoria.la/)
 
